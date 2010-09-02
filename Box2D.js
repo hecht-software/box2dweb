@@ -75,9 +75,9 @@ var a2j = {};
 var Vector_a2j_Number = a2j.NVector;
 //Uli Hecht 08/2010
 
-if(!window.flash) window.flash = {utils: {Directory: Object} };
-else if(!window.flash.utils) window.flash.utils = {Directory: Object};
-else if(!window.flash.utils.Directory) window.flash.utils.Directory = Object;
+if(!window.flash) window.flash = {utils: {Dictionary: Object} };
+else if(!window.flash.utils) window.flash.utils = {Dictionary: Object};
+else if(!window.flash.utils.Dictionary) window.flash.utils.Dictionary = Object;
 Object.__id__ = 0;
 Object.prototype.valueOf = function () {
    if (!this.__id__) this.__id__ = ++Object.__id__;
@@ -1055,7 +1055,7 @@ _A2J_postDefs = []; /* source: disabled*/
          bounds.splice(lowerIndex, 1);
          bounds.push(tBound1);
          bounds.push(tBound2);
-         var tEnd = boundCount - 2;
+         var tEnd = parseInt(boundCount - 2);
          for (var index = lowerIndex; index < tEnd; ++index) {
             tBound1 = bounds[index];
             var proxy2 = tBound1.proxy;
@@ -1338,8 +1338,8 @@ _A2J_postDefs = []; /* source: disabled*/
       subInput.maxFraction = input.maxFraction;
       var dx = (input.p2.x - input.p1.x) * this.m_quantizationFactor.x;
       var dy = (input.p2.y - input.p1.y) * this.m_quantizationFactor.y;
-      var sx = dx < (-Number.MIN_VALUE ? (-1) : (dx > Number.MIN_VALUE ? 1 : 0));
-      var sy = dy < (-Number.MIN_VALUE ? (-1) : (dy > Number.MIN_VALUE ? 1 : 0));
+      var sx = parseInt(dx < (-Number.MIN_VALUE ? (-1) : (dx > Number.MIN_VALUE ? 1 : 0)));
+      var sy = parseInt(dy < (-Number.MIN_VALUE ? (-1) : (dy > Number.MIN_VALUE ? 1 : 0)));
       var p1x = this.m_quantizationFactor.x * (input.p1.x - this.m_worldAABB.lowerBound.x);
       var p1y = this.m_quantizationFactor.y * (input.p1.y - this.m_worldAABB.lowerBound.y);
       var startValues = new Array();
@@ -1495,7 +1495,7 @@ _A2J_postDefs = []; /* source: disabled*/
          }
       }
       if (lowerQuery > 0) {
-         var i = lowerQuery - 1;
+         var i = parseInt(lowerQuery - 1);
          bound = bounds[i];
          var s = parseInt(bound.stabbingCount);
          while (s) {
@@ -1538,9 +1538,9 @@ _A2J_postDefs = []; /* source: disabled*/
       if (count === undefined) count = 0;
       if (value === undefined) value = 0;
       var low = 0;
-      var high = count - 1;
+      var high = parseInt(count - 1);
       while (low <= high) {
-         var mid = ((low + high) / 2);
+         var mid = parseInt(((low + high) / 2));
          var bound = bounds[mid];
          if (bound.value > value) {
             high = mid - 1;
@@ -1664,9 +1664,9 @@ _A2J_postDefs = []; /* source: disabled*/
          }
       }
       var s = this.EdgeSeparation(poly1, xf1, edge, poly2, xf2);
-      var prevEdge = edge - 1 >= 0 ? edge - 1 : count1 - 1;
+      var prevEdge = parseInt(edge - 1 >= 0 ? edge - 1 : count1 - 1);
       var sPrev = this.EdgeSeparation(poly1, xf1, prevEdge, poly2, xf2);
-      var nextEdge = edge + 1 < count1 ? edge + 1 : 0;
+      var nextEdge = parseInt(edge + 1 < count1 ? edge + 1 : 0);
       var sNext = this.EdgeSeparation(poly1, xf1, nextEdge, poly2, xf2);
       var bestEdge = 0;
       var bestSeparation = 0;
@@ -1729,7 +1729,8 @@ _A2J_postDefs = []; /* source: disabled*/
       }
       var tClip;
       var i1 = parseInt(index);
-      var i2 = i1 + 1 < count2 ? i1 + 1 : 0;tClip = c[0];
+      var i2 = parseInt(i1 + 1 < count2 ? i1 + 1 : 0);
+      tClip = c[0];
       tVec = vertices2[i1];
       tMat = xf2.R;
       tClip.v.x = xf2.position.x + (tMat.col1.x * tVec.x + tMat.col2.x * tVec.y);
@@ -1929,7 +1930,7 @@ _A2J_postDefs = []; /* source: disabled*/
          }
       }
       var vertIndex1 = parseInt(normalIndex);
-      var vertIndex2 = vertIndex1 + 1 < vertexCount ? vertIndex1 + 1 : 0;
+      var vertIndex2 = parseInt(vertIndex1 + 1 < vertexCount ? vertIndex1 + 1 : 0);
       var v1 = vertices[vertIndex1];
       var v2 = vertices[vertIndex2];
       if (separation < Number.MIN_VALUE) {
@@ -4028,8 +4029,9 @@ _A2J_postDefs = []; /* source: disabled*/
       for (i = 0;
       i < this.m_vertexCount; ++i) {
          var i1 = parseInt(i);
-         var i2 = i + 1 < this.m_vertexCount ? i + 1 : 0;
-         var edge = b2Math.SubtractVV(this.m_vertices[i2], this.m_vertices[i1]);b2Settings.b2Assert(edge.LengthSquared() > Number.MIN_VALUE);
+         var i2 = parseInt(i + 1 < this.m_vertexCount ? i + 1 : 0);
+         var edge = b2Math.SubtractVV(this.m_vertices[i2], this.m_vertices[i1]);
+         b2Settings.b2Assert(edge.LengthSquared() > Number.MIN_VALUE);
          this.m_normals[i].SetV(b2Math.CrossVF(edge, 1.0));
          this.m_normals[i].Normalize();
       }
@@ -4155,7 +4157,7 @@ _A2J_postDefs = []; /* source: disabled*/
       var p2Y = (tX * tMat.col2.x + tY * tMat.col2.y);
       var dX = p2X - p1X;
       var dY = p2Y - p1Y;
-      var index = (-1);
+      var index = parseInt((-1));
       for (var i = 0; i < this.m_vertexCount; ++i) {
          tVec = this.m_vertices[i];
          tX = tVec.x - p1X;
@@ -4260,8 +4262,8 @@ _A2J_postDefs = []; /* source: disabled*/
       var offsetL = offset - b2Math.Dot(normal, xf.position);
       var depths = new Vector_a2j_Number();
       var diveCount = 0;
-      var intoIndex = (-1);
-      var outoIndex = (-1);
+      var intoIndex = parseInt((-1));
+      var outoIndex = parseInt((-1));
       var lastSubmerged = false;
       var i = 0;
       for (i = 0;
@@ -4505,7 +4507,7 @@ _A2J_postDefs = []; /* source: disabled*/
       this.m_radius = b2Settings.b2_linearSlop;
    }
    _A2J_postDefs.push(function () {
-      Box2D.Collision.Shapes.b2Shape.e_unknownShape = (-1);
+      Box2D.Collision.Shapes.b2Shape.e_unknownShape = parseInt((-1));
       Box2D.Collision.Shapes.b2Shape.prototype.e_unknownShape = Box2D.Collision.Shapes.b2Shape.e_unknownShape;
       Box2D.Collision.Shapes.b2Shape.e_circleShape = 0;
       Box2D.Collision.Shapes.b2Shape.prototype.e_circleShape = Box2D.Collision.Shapes.b2Shape.e_circleShape;
@@ -4519,7 +4521,7 @@ _A2J_postDefs = []; /* source: disabled*/
       Box2D.Collision.Shapes.b2Shape.prototype.e_hitCollide = Box2D.Collision.Shapes.b2Shape.e_hitCollide;
       Box2D.Collision.Shapes.b2Shape.e_missCollide = 0;
       Box2D.Collision.Shapes.b2Shape.prototype.e_missCollide = Box2D.Collision.Shapes.b2Shape.e_missCollide;
-      Box2D.Collision.Shapes.b2Shape.e_startsInsideCollide = (-1);
+      Box2D.Collision.Shapes.b2Shape.e_startsInsideCollide = parseInt((-1));
       Box2D.Collision.Shapes.b2Shape.prototype.e_startsInsideCollide = Box2D.Collision.Shapes.b2Shape.e_startsInsideCollide;
    });
 })(); /* source: disabled*/
@@ -11973,6 +11975,7 @@ _A2J_postDefs = [];
          ,  cx = center.x * drawScale
          ,  cy = center.y * drawScale
          ;
+      s.moveTo(0, 0);
       s.beginPath();
       s.strokeStyle = this._color(color.color, this.m_alpha);
       s.fillStyle = this._color(color.color, this.m_fillAlpha);
