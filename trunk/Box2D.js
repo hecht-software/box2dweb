@@ -66,7 +66,7 @@ var a2j = {};
    a2j.is = function is(o1, o2) {
       if (o1 === null) return false;
       if ((o2 instanceof Function) && (o1 instanceof o2)) return true;
-      if ((o1.constructor.implements != undefined) && (o1.constructor.implements[o2])) return true;
+      if ((o1.constructor.__implements != undefined) && (o1.constructor.__implements[o2])) return true;
       return false;
    };
    
