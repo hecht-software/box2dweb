@@ -66,7 +66,7 @@ var a2j = {};
    a2j.is = function is(o1, o2) {
       if (o1 === null) return false;
       if ((o2 instanceof Function) && (o1 instanceof o2)) return true;
-      if ((o1.constructor.__implements != undefined) && (o1.constructor.__implements[o2])) return true;
+      if ((o1.constructor.implements != undefined) && (o1.constructor.implements[o2])) return true;
       return false;
    };
    
@@ -4893,7 +4893,7 @@ _A2J_postDefs = []; /* source: disabled*/
    }
    b2Math.MulMV = b2Math.prototype.MulMV;
    b2Math.prototype.MulTMV = function (A, v) {
-      var u = new b2Vec2(this.Dot(a2j.generateCallback(this, v), A.col1), this.Dot(a2j.generateCallback(this, v), A.col2));
+      var u = new b2Vec2(this.Dot(v, A.col1), this.Dot(v, A.col2));
       return u;
    }
    b2Math.MulTMV = b2Math.prototype.MulTMV;
@@ -4941,18 +4941,18 @@ _A2J_postDefs = []; /* source: disabled*/
    }
    b2Math.MulFV = b2Math.prototype.MulFV;
    b2Math.prototype.AddMM = function (A, B) {
-      var C = b2Mat22.FromVV(this.AddVV(a2j.generateCallback(this, A.col1), B.col1), this.AddVV(a2j.generateCallback(this, A.col2), B.col2));
+      var C = b2Mat22.FromVV(this.AddVV(A.col1, B.col1), this.AddVV(A.col2, B.col2));
       return C;
    }
    b2Math.AddMM = b2Math.prototype.AddMM;
    b2Math.prototype.MulMM = function (A, B) {
-      var C = b2Mat22.FromVV(this.MulMV(a2j.generateCallback(this, A), B.col1), this.MulMV(a2j.generateCallback(this, A), B.col2));
+      var C = b2Mat22.FromVV(this.MulMV(A, B.col1), this.MulMV(A, B.col2));
       return C;
    }
    b2Math.MulMM = b2Math.prototype.MulMM;
    b2Math.prototype.MulTMM = function (A, B) {
-      var c1 = new b2Vec2(this.Dot(a2j.generateCallback(this, A.col1), B.col1), this.Dot(a2j.generateCallback(this, A.col2), B.col1));
-      var c2 = new b2Vec2(this.Dot(a2j.generateCallback(this, A.col1), B.col2), this.Dot(a2j.generateCallback(this, A.col2), B.col2));
+      var c1 = new b2Vec2(this.Dot(A.col1, B.col1), this.Dot(A.col2, B.col1));
+      var c2 = new b2Vec2(this.Dot(A.col1, B.col2), this.Dot(A.col2, B.col2));
       var C = b2Mat22.FromVV(c1, c2);
       return C;
    }
@@ -4963,12 +4963,12 @@ _A2J_postDefs = []; /* source: disabled*/
    }
    b2Math.Abs = b2Math.prototype.Abs;
    b2Math.prototype.AbsV = function (a) {
-      var b = new b2Vec2(this.Abs(a2j.generateCallback(this, a.x)), this.Abs(a2j.generateCallback(this, a.y)));
+      var b = new b2Vec2(this.Abs(a.x), this.Abs(a.y));
       return b;
    }
    b2Math.AbsV = b2Math.prototype.AbsV;
    b2Math.prototype.AbsM = function (A) {
-      var B = b2Mat22.FromVV(this.AbsV(a2j.generateCallback(this, A.col1)), this.AbsV(a2j.generateCallback(this, A.col2)));
+      var B = b2Mat22.FromVV(this.AbsV(A.col1), this.AbsV(A.col2));
       return B;
    }
    b2Math.AbsM = b2Math.prototype.AbsM;
@@ -4979,7 +4979,7 @@ _A2J_postDefs = []; /* source: disabled*/
    }
    b2Math.Min = b2Math.prototype.Min;
    b2Math.prototype.MinV = function (a, b) {
-      var c = new b2Vec2(this.Min(a2j.generateCallback(this, a.x), b.x), this.Min(a2j.generateCallback(this, a.y), b.y));
+      var c = new b2Vec2(this.Min(a.x, b.x), this.Min(a.y, b.y));
       return c;
    }
    b2Math.MinV = b2Math.prototype.MinV;
@@ -4990,7 +4990,7 @@ _A2J_postDefs = []; /* source: disabled*/
    }
    b2Math.Max = b2Math.prototype.Max;
    b2Math.prototype.MaxV = function (a, b) {
-      var c = new b2Vec2(this.Max(a2j.generateCallback(this, a.x), b.x), this.Max(a2j.generateCallback(this, a.y), b.y));
+      var c = new b2Vec2(this.Max(a.x, b.x), this.Max(a.y, b.y));
       return c;
    }
    b2Math.MaxV = b2Math.prototype.MaxV;
@@ -5002,7 +5002,7 @@ _A2J_postDefs = []; /* source: disabled*/
    }
    b2Math.Clamp = b2Math.prototype.Clamp;
    b2Math.prototype.ClampV = function (a, low, high) {
-      return this.MaxV(low, this.MinV(a2j.generateCallback(this, a), high));
+      return this.MaxV(low, this.MinV(a, high));
    }
    b2Math.ClampV = b2Math.prototype.ClampV;
    b2Math.prototype.Swap = function (a, b) {
@@ -5513,14 +5513,14 @@ _A2J_postDefs = []; /* source: disabled*/
       return this.m_xf.position;
    }
    b2Body.prototype.SetPosition = function (position) {
-      this.SetPositionAndAngle(position, a2j.generateCallback(this, this.GetAngle()));
+      this.SetPositionAndAngle(position, this.GetAngle());
    }
    b2Body.prototype.GetAngle = function () {
       return this.m_sweep.a;
    }
    b2Body.prototype.SetAngle = function (angle) {
       if (angle === undefined) angle = 0;
-      this.SetPositionAndAngle(a2j.generateCallback(this, this.GetPosition()), angle);
+      this.SetPositionAndAngle(this.GetPosition(), angle);
    }
    b2Body.prototype.GetWorldCenter = function () {
       return this.m_sweep.c;
@@ -5558,7 +5558,7 @@ _A2J_postDefs = []; /* source: disabled*/
       bd.bullet = (this.m_flags & b2Body.e_bulletFlag) == b2Body.e_bulletFlag;
       bd.awake = (this.m_flags & b2Body.e_awakeFlag) == b2Body.e_awakeFlag;
       bd.linearDamping = this.m_linearDamping;
-      bd.linearVelocity.SetV(a2j.generateCallback(this, this.GetLinearVelocity()));
+      bd.linearVelocity.SetV(this.GetLinearVelocity());
       bd.position = this.GetPosition();
       bd.userData = this.GetUserData();
       return bd;
@@ -5600,7 +5600,7 @@ _A2J_postDefs = []; /* source: disabled*/
       var angularVelocity = this.GetAngularVelocity();
       var center = this.GetWorldCenter();
       var body1 = this;
-      var body2 = this.m_world.CreateBody(a2j.generateCallback(this, this.GetDefinition()));
+      var body2 = this.m_world.CreateBody(this.GetDefinition());
       var prev;
       for (var f = body1.m_fixtureList; f;) {
          if (callback(f)) {
