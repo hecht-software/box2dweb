@@ -19,13 +19,9 @@ var a2j = {};
 
 (function (a2j, window) {
    
-   /*Object.__id__ = 0;
-   Object.prototype.valueOf = function () {
-      if (!this.__id__) this.__id__ = ++Object.__id__;
-      else debugger;
-      return this.__id__;
-   };
-   Object.prototype.toString = Object.prototype.valueOf;*/
+   if(!window.flash) window.flash = {utils: {Dictionary: Object} };
+   else if(!window.flash.utils) window.flash.utils = {Dictionary: Object};
+   else if(!window.flash.utils.Dictionary) window.flash.utils.Dictionary = Object;
    
    window.Vector = window.Array;
    
@@ -77,17 +73,7 @@ var a2j = {};
 })(a2j, window, undefined);
 
 var Vector_a2j_Number = a2j.NVector;
-//Uli Hecht 08/2010
-
-if(!window.flash) window.flash = {utils: {Dictionary: Object} };
-else if(!window.flash.utils) window.flash.utils = {Dictionary: Object};
-else if(!window.flash.utils.Dictionary) window.flash.utils.Dictionary = Object;
-Object.__id__ = 0;
-Object.prototype.valueOf = function () {
-   if (!this.__id__) this.__id__ = ++Object.__id__;
-   return this.__id__;
-};
-Object.prototype.toString = Object.prototype.valueOf;//package structure
+//package structure
 if (!window.Box2D) Box2D = {};
 if (!window.Box2D.Collision) Box2D.Collision = {};
 if (!window.Box2D.Collision.Shapes) Box2D.Collision.Shapes = {};
@@ -11820,25 +11806,7 @@ _A2J_postDefs = []; /* source: disabled*/
 })();
 var Vector_a2j_Number = a2j.NVector;
 //post-definitions
-for (var i = 0; i < _A2J_postDefs.length; ++i) _A2J_postDefs[i]();/*
-* Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
-*
-* This software is provided 'as-is', without any express or implied
-* warranty.  In no event will the authors be held liable for any damages
-* arising from the use of this software.
-* Permission is granted to anyone to use this software for any purpose,
-* including commercial applications, and to alter it and redistribute it
-* freely, subject to the following restrictions:
-* 1. The origin of this software must not be misrepresented; you must not
-* claim that you wrote the original software. If you use this software
-* in a product, an acknowledgment in the product documentation would be
-* appreciated but is not required.
-* 2. Altered source versions must be plainly marked as such, and must not be
-* misrepresented as being the original software.
-* 3. This notice may not be removed or altered from any source distribution.
-*/
-
-(function() {
+for (var i = 0; i < _A2J_postDefs.length; ++i) _A2J_postDefs[i]();(function() {
    function b2DebugDraw() {
       b2DebugDraw.b2DebugDraw.apply(this, arguments);
       if (this.constructor === b2DebugDraw) this.b2DebugDraw.apply(this, arguments);
