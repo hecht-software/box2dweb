@@ -1,0 +1,11 @@
+#summary Planned features and improvements
+
+Planned features and improvements for the next major release:
+
+  * Support Windows Internet Explorer versions 8 and 9
+  * Replace "for/in" by "for" when traversing arrays
+  * Replace b2Vec2 by WebGL arrays internally
+  * Improve minification by evaluating "private" and "public" modificators
+  * Keep documentation comments in the non-minified source code
+  * Replace __define(G/S)etter__ by methods
+  * Provide an own API-documentation
