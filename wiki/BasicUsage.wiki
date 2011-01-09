@@ -1,3 +1,5 @@
+#summary differences between Box2dFlash and Box2dWeb
+
 = Introduction =
 
 Box2dWeb is organized the same way as Box2dFlash. I.e. the API is almost identical. You can find the documentation here:
