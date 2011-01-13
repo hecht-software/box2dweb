@@ -2,6 +2,8 @@
 
 = Introduction =
 
+For basic usage of Box2D, you should read the documentation of the original C++ version: http://www.box2d.org/manual.html
+
 Box2dWeb is organized the same way as Box2dFlash. I.e. the API is almost identical. You can find the documentation here:
 http://www.box2dflash.org/docs/2.1a/reference/
 
