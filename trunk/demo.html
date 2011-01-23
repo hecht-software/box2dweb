@@ -78,7 +78,7 @@
 			debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
 			world.SetDebugDraw(debugDraw);
          
-         window.setInterval(update, 1000 / 30);
+         window.setInterval(update, 1000 / 60);
          
          //mouse
          
@@ -153,7 +153,7 @@
                }
             }
          
-            world.Step(1 / 30, 10, 10);
+            world.Step(1 / 60, 10, 10);
             world.DrawDebugData();
             world.ClearForces();
          };
