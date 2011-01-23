@@ -70,12 +70,12 @@
 			debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
 			world.SetDebugDraw(debugDraw);
          
-         window.setInterval(update, 1000 / 30);
+         window.setInterval(update, 1000 / 60);
       };
       
       function update() {
          world.Step(
-               1 / 30   //frame-rate
+               1 / 60   //frame-rate
             ,  10       //velocity iterations
             ,  10       //position iterations
          );

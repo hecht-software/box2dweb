@@ -2033,16 +2033,24 @@ _A2J_postDefs = []; /* source: disabled*/
       id.key = this.key;
       return id;
    }
-   b2ContactID.prototype.__defineGetter__('key', function () {
-      return this._key;
+   Object.defineProperty(b2ContactID.prototype, 'key', {
+      enumerable: false,
+      configurable: true,
+      get: function () {
+         return this._key;
+      }
    });
-   b2ContactID.prototype.__defineSetter__('key', function (value) {
-      if (value === undefined) value = 0;
-      this._key = value;
-      this.features._referenceEdge = this._key & 0x000000ff;
-      this.features._incidentEdge = ((this._key & 0x0000ff00) >> 8) & 0x000000ff;
-      this.features._incidentVertex = ((this._key & 0x00ff0000) >> 16) & 0x000000ff;
-      this.features._flip = ((this._key & 0xff000000) >> 24) & 0x000000ff;
+   Object.defineProperty(b2ContactID.prototype, 'key', {
+      enumerable: false,
+      configurable: true,
+      set: function (value) {
+         if (value === undefined) value = 0;
+         this._key = value;
+         this.features._referenceEdge = this._key & 0x000000ff;
+         this.features._incidentEdge = ((this._key & 0x0000ff00) >> 8) & 0x000000ff;
+         this.features._incidentVertex = ((this._key & 0x00ff0000) >> 16) & 0x000000ff;
+         this.features._flip = ((this._key & 0xff000000) >> 24) & 0x000000ff;
+      }
    });
    b2ContactPoint.b2ContactPoint = function () {
       this.position = new b2Vec2();
@@ -3552,37 +3560,69 @@ _A2J_postDefs = []; /* source: disabled*/
       this.id.Set(other.id);
    }
    Features.Features = function () {};
-   Features.prototype.__defineGetter__('referenceEdge', function () {
-      return this._referenceEdge;
+   Object.defineProperty(Features.prototype, 'referenceEdge', {
+      enumerable: false,
+      configurable: true,
+      get: function () {
+         return this._referenceEdge;
+      }
    });
-   Features.prototype.__defineSetter__('referenceEdge', function (value) {
-      if (value === undefined) value = 0;
-      this._referenceEdge = value;
-      this._m_id._key = (this._m_id._key & 0xffffff00) | (this._referenceEdge & 0x000000ff);
+   Object.defineProperty(Features.prototype, 'referenceEdge', {
+      enumerable: false,
+      configurable: true,
+      set: function (value) {
+         if (value === undefined) value = 0;
+         this._referenceEdge = value;
+         this._m_id._key = (this._m_id._key & 0xffffff00) | (this._referenceEdge & 0x000000ff);
+      }
    });
-   Features.prototype.__defineGetter__('incidentEdge', function () {
-      return this._incidentEdge;
+   Object.defineProperty(Features.prototype, 'incidentEdge', {
+      enumerable: false,
+      configurable: true,
+      get: function () {
+         return this._incidentEdge;
+      }
    });
-   Features.prototype.__defineSetter__('incidentEdge', function (value) {
-      if (value === undefined) value = 0;
-      this._incidentEdge = value;
-      this._m_id._key = (this._m_id._key & 0xffff00ff) | ((this._incidentEdge << 8) & 0x0000ff00);
+   Object.defineProperty(Features.prototype, 'incidentEdge', {
+      enumerable: false,
+      configurable: true,
+      set: function (value) {
+         if (value === undefined) value = 0;
+         this._incidentEdge = value;
+         this._m_id._key = (this._m_id._key & 0xffff00ff) | ((this._incidentEdge << 8) & 0x0000ff00);
+      }
    });
-   Features.prototype.__defineGetter__('incidentVertex', function () {
-      return this._incidentVertex;
+   Object.defineProperty(Features.prototype, 'incidentVertex', {
+      enumerable: false,
+      configurable: true,
+      get: function () {
+         return this._incidentVertex;
+      }
    });
-   Features.prototype.__defineSetter__('incidentVertex', function (value) {
-      if (value === undefined) value = 0;
-      this._incidentVertex = value;
-      this._m_id._key = (this._m_id._key & 0xff00ffff) | ((this._incidentVertex << 16) & 0x00ff0000);
+   Object.defineProperty(Features.prototype, 'incidentVertex', {
+      enumerable: false,
+      configurable: true,
+      set: function (value) {
+         if (value === undefined) value = 0;
+         this._incidentVertex = value;
+         this._m_id._key = (this._m_id._key & 0xff00ffff) | ((this._incidentVertex << 16) & 0x00ff0000);
+      }
    });
-   Features.prototype.__defineGetter__('flip', function () {
-      return this._flip;
+   Object.defineProperty(Features.prototype, 'flip', {
+      enumerable: false,
+      configurable: true,
+      get: function () {
+         return this._flip;
+      }
    });
-   Features.prototype.__defineSetter__('flip', function (value) {
-      if (value === undefined) value = 0;
-      this._flip = value;
-      this._m_id._key = (this._m_id._key & 0x00ffffff) | ((this._flip << 24) & 0xff000000);
+   Object.defineProperty(Features.prototype, 'flip', {
+      enumerable: false,
+      configurable: true,
+      set: function (value) {
+         if (value === undefined) value = 0;
+         this._flip = value;
+         this._m_id._key = (this._m_id._key & 0x00ffffff) | ((this._flip << 24) & 0xff000000);
+      }
    });
 })(); /* source: disabled*/
 (function () {
@@ -4552,20 +4592,36 @@ _A2J_postDefs = []; /* source: disabled*/
       this._g = a2j.parseUInt(255 * b2Math.Clamp(gg, 0.0, 1.0));
       this._b = a2j.parseUInt(255 * b2Math.Clamp(bb, 0.0, 1.0));
    }
-   b2Color.prototype.__defineSetter__('r', function (rr) {
-      if (rr === undefined) rr = 0;
-      this._r = a2j.parseUInt(255 * b2Math.Clamp(rr, 0.0, 1.0));
+   Object.defineProperty(b2Color.prototype, 'r', {
+      enumerable: false,
+      configurable: true,
+      set: function (rr) {
+         if (rr === undefined) rr = 0;
+         this._r = a2j.parseUInt(255 * b2Math.Clamp(rr, 0.0, 1.0));
+      }
    });
-   b2Color.prototype.__defineSetter__('g', function (gg) {
-      if (gg === undefined) gg = 0;
-      this._g = a2j.parseUInt(255 * b2Math.Clamp(gg, 0.0, 1.0));
+   Object.defineProperty(b2Color.prototype, 'g', {
+      enumerable: false,
+      configurable: true,
+      set: function (gg) {
+         if (gg === undefined) gg = 0;
+         this._g = a2j.parseUInt(255 * b2Math.Clamp(gg, 0.0, 1.0));
+      }
    });
-   b2Color.prototype.__defineSetter__('b', function (bb) {
-      if (bb === undefined) bb = 0;
-      this._b = a2j.parseUInt(255 * b2Math.Clamp(bb, 0.0, 1.0));
+   Object.defineProperty(b2Color.prototype, 'b', {
+      enumerable: false,
+      configurable: true,
+      set: function (bb) {
+         if (bb === undefined) bb = 0;
+         this._b = a2j.parseUInt(255 * b2Math.Clamp(bb, 0.0, 1.0));
+      }
    });
-   b2Color.prototype.__defineGetter__('color', function () {
-      return (this._r << 16) | (this._g << 8) | (this._b);
+   Object.defineProperty(b2Color.prototype, 'color', {
+      enumerable: false,
+      configurable: true,
+      get: function () {
+         return (this._r << 16) | (this._g << 8) | (this._b);
+      }
    });
    b2Settings.b2Settings = function () {};
    b2Settings.prototype.b2MixFriction = function (friction1, friction2) {
