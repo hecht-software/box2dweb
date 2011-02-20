@@ -46,7 +46,7 @@ debugDraw.SetSprite(document.GetElementsByTagName("canvas")[0].getContext("2d"))
 
 = Working with Events =
 
-You have to implement event-interfaces in Box2dFlash. Since Javascript doesn't support object-oriented programming natively, I show you how to deal with events in Box2dWeb:
+You have to implement event-interfaces in Box2dFlash. Since Javascript doesn't support classical inheritance natively, I show you how to deal with events in Box2dWeb:
 
 {{{
 var world = new Box2D.Dynamics.b2World(new Box2d.Common.Math.b2Vec2(0, 10), true);
