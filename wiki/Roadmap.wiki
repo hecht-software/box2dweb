@@ -5,7 +5,7 @@
 Planned features and improvements for the next major release:
 
   * Support Windows Internet Explorer versions 8 and 9
-  * Replace "for/in" by "for" when traversing arrays
+  * ~~Replace "for/in" by "for" when traversing arrays~~ (issue #13, r24)
   * Replace b2Vec2 by WebGL arrays internally (Fall back if WebGL is not available)
   * Reduce function calls
   * Reduce references
