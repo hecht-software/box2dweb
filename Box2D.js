@@ -2502,22 +2502,24 @@ _A2J_postDefs = []; /* source: disabled*/
    b2DynamicTreeBroadPhase.prototype.UpdatePairs = function (callback) {
       var __this = this;
       __this.m_pairCount = 0;
-      var queryProxy;
-      for (var each in __this.m_moveBuffer) {
-         queryProxy = __this.m_moveBuffer[each]; {
-            function QueryCallback(proxy) {
-               if (proxy == queryProxy) return true;
-               if (__this.m_pairCount == __this.m_pairBuffer.length) {
-                  __this.m_pairBuffer[__this.m_pairCount] = new b2DynamicTreePair();
-               }
-               var pair = __this.m_pairBuffer[__this.m_pairCount];
-               pair.proxyA = proxy < queryProxy ? proxy : queryProxy;
-               pair.proxyB = proxy >= queryProxy ? proxy : queryProxy;++__this.m_pairCount;
-               return true;
-            };
-            var fatAABB = __this.m_tree.GetFatAABB(queryProxy);
-            __this.m_tree.Query(QueryCallback, fatAABB);
-         }
+      var i = 0,
+         queryProxy;
+      for (i = 0;
+      i < __this.m_moveBuffer.length; ++i) {
+         queryProxy = __this.m_moveBuffer[i];
+
+         function QueryCallback(proxy) {
+            if (proxy == queryProxy) return true;
+            if (__this.m_pairCount == __this.m_pairBuffer.length) {
+               __this.m_pairBuffer[__this.m_pairCount] = new b2DynamicTreePair();
+            }
+            var pair = __this.m_pairBuffer[__this.m_pairCount];
+            pair.proxyA = proxy < queryProxy ? proxy : queryProxy;
+            pair.proxyB = proxy >= queryProxy ? proxy : queryProxy;++__this.m_pairCount;
+            return true;
+         };
+         var fatAABB = __this.m_tree.GetFatAABB(queryProxy);
+         __this.m_tree.Query(QueryCallback, fatAABB);
       }
       __this.m_moveBuffer.length = 0;
       for (var i = 0; i < __this.m_pairCount;) {
@@ -4031,11 +4033,12 @@ _A2J_postDefs = []; /* source: disabled*/
    b2PolygonShape.prototype.SetAsArray = function (vertices, vertexCount) {
       if (vertexCount === undefined) vertexCount = 0;
       var v = new Vector();
-      var tVec;
-      for (var each in vertices) {
-         tVec = vertices[each]; {
-            v.push(tVec);
-         }
+      var i = 0,
+         tVec;
+      for (i = 0;
+      i < vertices.length; ++i) {
+         tVec = vertices[i];
+         v.push(tVec);
       }
       this.SetAsVector(v, vertexCount);
    }
