@@ -4,14 +4,14 @@
 
 Planned features and improvements for the next major release:
 
-  * Support Windows Internet Explorer versions 8 and 9
+  * ~~Support Windows Internet Explorer versions 8 and 9~~ (issue #12, r21; version 8 won't be supported. Please notify me, if your opinion is that IE8 support is important.)
   * ~~Replace "for/in" by "for" when traversing arrays~~ (issue #13, r24)
   * Replace b2Vec2 by WebGL arrays internally (Fall back if WebGL is not available)
   * Reduce function calls
   * Reduce references
   * Improve minification by evaluating "private" and "public" modificators
   * Keep documentation comments in the non-minified source code
-  * ~~Replace __define(G/S)etter__ by methods~~ (issue #12, r21)
+  * Replace properties by methods
   * Provide an own API-documentation
 
 = How about a hand-written port of Box2dFlash? =
