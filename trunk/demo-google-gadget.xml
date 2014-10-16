@@ -531,22 +531,30 @@ K.moveTo(G.position.x*y,G.position.y*y);K.lineTo((G.position.x+this.m_xformScale
          var mouseX, mouseY, mousePVec, isMouseDown, selectedBody, mouseJoint;
          var canvasPosition = getElementPosition(document.getElementById("canvas"));
          
-         document.addEventListener("mousedown", function(e) {
+         function handleMouseDown(e) {
             isMouseDown = true;
             handleMouseMove(e);
             document.addEventListener("mousemove", handleMouseMove, true);
-         }, true);
+            document.addEventListener("touchmove", handleMouseMove, true);
+         }
          
-         document.addEventListener("mouseup", function() {
+         document.addEventListener("mousedown", handleMouseDown, true);
+         document.addEventListener("touchstart", handleMouseDown, true);
+         
+         function handleMouseUp() {
             document.removeEventListener("mousemove", handleMouseMove, true);
+            document.removeEventListener("touchmove", handleMouseMove, true);
             isMouseDown = false;
             mouseX = undefined;
             mouseY = undefined;
-         }, true);
+         }
+         
+         document.addEventListener("mouseup", handleMouseUp, true);
          
          function handleMouseMove(e) {
             mouseX = (e.clientX - canvasPosition.x) / 30;
             mouseY = (e.clientY - canvasPosition.y) / 30;
+            e.preventDefault();
          };
          
          function getBodyAtMouse() {
