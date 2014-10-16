@@ -550,10 +550,27 @@ K.moveTo(G.position.x*y,G.position.y*y);K.lineTo((G.position.x+this.m_xformScale
          }
          
          document.addEventListener("mouseup", handleMouseUp, true);
+         document.addEventListener("touchend", handleMouseUp, true);
          
          function handleMouseMove(e) {
-            mouseX = (e.clientX - canvasPosition.x) / 30;
-            mouseY = (e.clientY - canvasPosition.y) / 30;
+            var clientX, clientY;
+            if(e.clientX)
+            {
+               clientX = e.clientX;
+               clientY = e.clientY;
+            }
+            else if(e.changedTouches && e.changedTouches.length > 0)
+            {
+               var touch = e.changedTouches[e.changedTouches.length - 1];
+               clientX = touch.clientX;
+               clientY = touch.clientY;
+            }
+            else
+            {
+               return;
+            }
+            mouseX = (clientX - canvasPosition.x) / 30;
+            mouseY = (clientY - canvasPosition.y) / 30;
             e.preventDefault();
          };
          
