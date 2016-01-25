@@ -17,6 +17,8 @@
 */
 var Box2D = {};
 
+(function () {
+
 (function (a2j, undefined) {
 
    if(!(Object.prototype.defineProperty instanceof Function)
@@ -10864,3 +10866,5 @@ Box2D.postDefs = [];
 var i;
 for (i = 0; i < Box2D.postDefs.length; ++i) Box2D.postDefs[i]();
 delete Box2D.postDefs;
+
+})();
