@@ -10753,7 +10753,7 @@ Box2D.postDefs = [];
    b2DebugDraw.prototype.SetLineThickness = function (lineThickness) {
       if (lineThickness === undefined) lineThickness = 0;
       this.m_lineThickness = lineThickness;
-      this.m_ctx.strokeWidth = lineThickness;
+      this.m_ctx.lineWidth = lineThickness;
    };
    b2DebugDraw.prototype.GetLineThickness = function () {
       return this.m_lineThickness;
