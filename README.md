@@ -4,7 +4,7 @@ This is a port of _Box2DFlash_ 2.1a to JavaScript. [We developed](http://hecht-s
 
 There  already  exists a port to JavaScript called _Box2dJs_, but it's not up-to-date and you have to import a big amount of JavaScript files in every project, whereas my version is stored in a single file.
 
-The _Box2D_ physics engine was developed by Erin Catto (visit http://www.gphysics.com for further information)
+The _Box2D_ physics engine was developed by [Erin Catto](https://github.com/erincatto).
 
 ## Live Demo ##
 
